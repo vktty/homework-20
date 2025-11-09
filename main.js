@@ -8,8 +8,10 @@ const userObj = {
 console.log(userObj);
 
 // 2
-userObj.fullName = `${userObj.firstName} ${userObj.lastName}`;
-console.log(userObj.fullName);
+userObj.fullName = function () {
+    return `${userObj.firstName} ${userObj.lastName}`
+};
+console.log(userObj.fullName());
 
 // 3
 function defUpperStr(text) {
@@ -37,7 +39,6 @@ console.log(evenFn(20));
 
 // 5
 function weekFn(n) {
-    let day;
     switch (n) {
         case 1:
             return 'Понеділок';
@@ -68,13 +69,14 @@ console.log(weekFn('2'));
 // 6 
 function ageClassification(n) {
     let group
-    group = (n > 0 && n <= 24) ? 'Дитинство' 
-    : (n >= 24 && n <= 44) ? 'Молодість' 
-    : (n >= 44 && n <= 65) ? 'Зрілість' 
-    : (n >= 65 && n <= 75) ? 'Старість' 
-    : (n >= 75 && n <= 90) ? 'Довголіття' 
-    : (n >= 90 && n <= 122) ? 'Рекорд' 
-    : null;
+    group = (n <= 0) ? null
+        : (n <= 24) ? 'Дитинство'
+            : (n <= 44) ? 'Молодість'
+                : (n <= 65) ? 'Зрілість'
+                    : (n <= 75) ? 'Старість'
+                        : (n <= 90) ? 'Довголіття'
+                            : (n <= 122) ? 'Рекорд'
+                                : null;
 
     return group;
 }
@@ -141,7 +143,7 @@ function mainFunc(a, b, cb) {
 }
 
 function cbRandom(min, max) {
-    return Math.floor(min + Math.random() * (max-min))
+    return Math.floor(min + Math.random() * (max - min))
 }
 function cbPow(num, pow) {
     return Math.pow(num, pow);
